@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Gallery</title>
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+
+            background: -webkit-linear-gradient(110deg, #702e77 60%, #88189c 60%);
+            background: -o-linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+            background: -moz-linear-gradient(110deg, #aa861d 60%, #277b7b 60%);
+            background: linear-gradient(110deg, #2e9b80 70%, #08c898 30%);
+        }
+
+        
+
+
+        .gallery {
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            position: relative;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .gallery img {
+            width: 200px;
+            height: 150px;
+            object-fit: cover;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.1);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            max-width: 80%;
+            max-height: 80%;
+        }
+
+        .modal img {
+            width: 130%;
+            height: 1300%;
+        }
+
+        .close-btn {
+            position: absolute;
+            font-size: 90px;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>My Gallery</h1>
+
+    <div class="gallery">
+        <img src="img/img1.jpg" alt="Image 1" onclick="openModal('img/img1.jpg')">
+        <img src="img/img2.jpg" alt="Image 2" onclick="openModal('img/img2.jpg')">
+        <img src="img/img3.jpg" alt="Image 3" onclick="openModal('img/img3.jpg')">
+        <img src="img/img4.jpg" alt="Image 4" onclick="openModal('img/img4.jpg')">
+        <img src="img/img5.jpg" alt="Image 5" onclick="openModal('img/img5.jpg')">
+        <img src="img/img6.jpg" alt="Image 6" onclick="openModal('img/img6.jpg')">
+        <img src="img/img7.jpg" alt="Image 7" onclick="openModal('img/img7.jpg')">
+        <img src="img/img8.jpg" alt="Image 8" onclick="openModal('img/img8.jpg')">
+        <img src="img/img9.jpg" alt="Image 9" onclick="openModal('img/img9.jpg')">
+        <img src="img/img10.jpg" alt="Image 1" onclick="openModal('img/img10.jpg')">
+        <img src="img/img11.jpg" alt="Image 1" onclick="openModal('img/img11.jpg')">
+        <img src="img/img12.jpg" alt="Image 2" onclick="openModal('img/img12.jpg')">
+        <img src="img/img13.jpg" alt="Image 3" onclick="openModal('img/img13.jpg')">
+        <img src="img/img14.jpg" alt="Image 4" onclick="openModal('img/img14.jpg')">
+        <img src="img/img15.jpg" alt="Image 5" onclick="openModal('img/img15.jpg')">
+        <img src="img/img16.jpg" alt="Image 6" onclick="openModal('img/img16.jpg')">
+        <img src="img/img17.jpg" alt="Image 7" onclick="openModal('img/img17.jpg')">
+        <img src="img/img18.jpg" alt="Image 8" onclick="openModal('img/img18.jpg')">
+
+
+    </div>
+
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal()">&times;</span>
+            <img id="modal-img" src="" alt="Modal Image">
+        </div>
+    </div>
+
+    <script>
+        function openModal(imgSrc) {
+            const modal = document.getElementById('modal');
+            const modalImg = document.getElementById('modal-img');
+
+            modalImg.src = imgSrc;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'none';
+        }
+    </script>
+
+</body>
+
+</html>

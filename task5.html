@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Remove Duplicates</title>
+    <script>
+        function removeDuplicates() {
+            // Get input from the user
+            var userInput = document.getElementById("userInput").value;
+
+            // Convert the input string to an array
+            var inputArray = userInput.split(",").map(Number);
+
+            // Use a Set to remove duplicates
+            var uniqueArray = Array.from(new Set(inputArray));
+
+            // Display the unique values
+            document.getElementById("output").innerText = "Output: [" + uniqueArray.join(",") + "]";
+        }
+    </script>
+</head>
+<body>
+    <div>
+        <label for="userInput">Enter numbers separated by commas:</label>
+        <input type="text" id="userInput" placeholder="1,2,3,4........">
+        <button onclick="removeDuplicates()">Remove Duplicates</button>
+    </div>
+    <h2 id="output"></h2>
+</body>
+</html>

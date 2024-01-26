@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz</title>
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        #quiz-container {
+            background-color: #b7fffa;
+            padding: 60px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        #question-container {
+            margin-bottom: 20px;
+        }
+
+        #options-container {
+            margin-top: 10px;
+        }
+
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #da9227;
+            font-weight: bolder;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="quiz-container">
+        <h1>Interactive Quiz</h1>
+        <div id="question-container">
+            <p id="question"></p>
+            <div id="options-container">
+                <input type="radio" name="option" id="option1">
+                <label for="option1" id="option1-label"></label>
+                <br>
+                <input type="radio" name="option" id="option2">
+                <label for="option2" id="option2-label"></label>
+                <br>
+                <input type="radio" name="option" id="option3">
+                <label for="option3" id="option3-label"></label>
+            </div>
+        </div>
+        <button id="submit-btn" onclick="checkAnswer()">Submit</button>
+        <button id="play-again-btn" onclick="resetQuiz()" style="display: none;">Play Again</button>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "What is the capital of France?",
+                options: ["Paris", "London", "Bart"],
+                answer: "Paris"
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                options: ["Mars", "Venus", "Jupiter"],
+                answer: "Mars"
+            },
+            {
+                question: "What is the largest mammal on Earth?",
+                options: ["Elephant", "Blue Whale", "Giraffe"],
+                answer: "Blue Whale"
+            }
+        ];
+
+        let currentQuestion = 0;
+        let score = 0;
+
+        function loadQuestion() {
+            const questionElem = document.getElementById('question');
+            const option1Elem = document.getElementById('option1-label');
+            const option2Elem = document.getElementById('option2-label');
+            const option3Elem = document.getElementById('option3-label');
+
+            questionElem.textContent = questions[currentQuestion].question;
+            option1Elem.textContent = questions[currentQuestion].options[0];
+            option2Elem.textContent = questions[currentQuestion].options[1];
+            option3Elem.textContent = questions[currentQuestion].options[2];
+
+            // Clear previous selections
+            document.querySelectorAll('input[name="option"]').forEach(radio => radio.checked = false);
+        }
+
+        function checkAnswer() {
+            const options = document.getElementsByName('option');
+            let selectedOption;
+
+            options.forEach(option => {
+                if (option.checked) {
+                    selectedOption = option.nextElementSibling.textContent;
+                }
+            });
+
+            if (selectedOption === questions[currentQuestion].answer) {
+                score++;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            const quizContainer = document.getElementById('quiz-container');
+            const playAgainBtn = document.getElementById('play-again-btn');
+
+            quizContainer.innerHTML = `<h1>Your Score: ${score} / ${questions.length}</h1>`;
+            playAgainBtn.style.display = 'block';
+        }
+
+        function resetQuiz() {
+            currentQuestion = 0;
+            score = 0;
+            loadQuestion();
+            const playAgainBtn = document.getElementById('play-again-btn');
+            playAgainBtn.style.display = 'none';
+        }
+
+        // Initial load
+        loadQuestion();
+    </script>
+</body>
+</html>

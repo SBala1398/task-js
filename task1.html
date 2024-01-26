@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>CAPTCHA Task</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #3498db;
+        }
+
+        #captcha-container {
+            background-color: #ecf0f1;
+            padding: 50px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        #captcha-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        #captcha-input {
+            margin-top: 10px;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        #verify-btn {
+            margin-top: 15px;
+            padding: 12px;
+            cursor: pointer;
+            background-color: #2ecc71;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        #verify-btn:hover {
+            background-color: #27ae60;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="captcha-container">
+        <div id="captcha-text">16RxToi5</div>
+        <input type="text" id="captcha-input" placeholder="Enter CAPTCHA">
+        <button id="verify-btn" onclick="verifyCaptcha()">Verify</button>
+    </div>
+    <script>
+
+        function verifyCaptcha() {
+            var userInput = document.getElementById("captcha-input").value;
+            var captchaText = document.getElementById("captcha-text").innerText;
+            if (userInput === captchaText) {
+                alert("Correct! CAPTCHA verified.");
+                clearCaptcha();
+            } else {
+                alert("Try again. CAPTCHA does not match.");
+            }
+        }
+        function clearCaptcha() {
+            document.getElementById("captcha-container").style.display = "none";
+        }
+
+    </script>
+</body>
+
+</html>
